@@ -1,9 +1,11 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
-import 'login_screen.dart'; // غير المسار لو مختلف
+import 'login_screen.dart';
 
 class SplashScreen extends StatefulWidget {
   static const String routeName = 'splash';
+
+  const SplashScreen({super.key});
 
   @override
   State<SplashScreen> createState() => _SplashScreenState();
@@ -24,7 +26,7 @@ class _SplashScreenState extends State<SplashScreen> {
 
   @override
   Widget build(BuildContext context) {
-    final size = MediaQuery.of(context).size;
+   // final size = MediaQuery.of(context).size;
 
     return Scaffold(
       backgroundColor: Color(0xffE9FAFF),

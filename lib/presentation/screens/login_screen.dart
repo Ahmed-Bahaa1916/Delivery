@@ -1,16 +1,11 @@
 import 'dart:async';
+import 'package:delivery/presentation/screens/order_empty.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:untitled7/screen/language.dart';
-import 'package:untitled7/screen/order_news.dart';
 import '../../application/cubit_state.dart';
 import '../../core/constant.dart';
 import '../../infrastructure/datasources/api_sevices.dart';
-import '../constant.dart';
-import '../cubit/cubit_state.dart';
-import '../servisces/api_servicsec.dart';
-import '../widget/custom_text.dart';
-import 'home_screen.dart';
+import 'language.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});
@@ -38,7 +33,7 @@ class _LoginScreenState extends State<LoginScreen> with WidgetsBindingObserver {
       Navigator.pushAndRemoveUntil(
         context,
         MaterialPageRoute(builder: (_) => const LoginScreen()),
-            (route) => false,
+        (route) => false,
       );
     });
   }
@@ -92,7 +87,9 @@ class _LoginScreenState extends State<LoginScreen> with WidgetsBindingObserver {
                           onTap: () {
                             Navigator.pushReplacement(
                               context,
-                              MaterialPageRoute(builder: (_) => LanguageScreen()),
+                              MaterialPageRoute(
+                                builder: (_) => LanguageScreen(),
+                              ),
                             );
                           },
                           child: const Icon(
@@ -130,7 +127,10 @@ class _LoginScreenState extends State<LoginScreen> with WidgetsBindingObserver {
 
                 CustomTextField(hint: 'User Id', controller: userIdController),
                 const SizedBox(height: 20),
-                CustomTextField(hint: 'Password', controller: passwordController),
+                CustomTextField(
+                  hint: 'Password',
+                  controller: passwordController,
+                ),
                 const SizedBox(height: 15),
 
                 Align(
@@ -161,14 +161,20 @@ class _LoginScreenState extends State<LoginScreen> with WidgetsBindingObserver {
 
                         if (userId.isEmpty || password.isEmpty) {
                           ScaffoldMessenger.of(context).showSnackBar(
-                            const SnackBar(content: Text('Please enter User ID and Password')),
+                            const SnackBar(
+                              content: Text(
+                                'Please enter User ID and Password',
+                              ),
+                            ),
                           );
                           return;
                         }
 
                         if (userId != '1010' || password != '1') {
                           ScaffoldMessenger.of(context).showSnackBar(
-                            const SnackBar(content: Text('User ID or Password is incorrect')),
+                            const SnackBar(
+                              content: Text('User ID or Password is incorrect'),
+                            ),
                           );
                           return;
                         }
@@ -184,11 +190,13 @@ class _LoginScreenState extends State<LoginScreen> with WidgetsBindingObserver {
                           context.read<OrderCubit>().fetchOrders();
                           Navigator.pushReplacement(
                             context,
-                            MaterialPageRoute(builder: (_) => OrdersScreen()),
+                            MaterialPageRoute(builder: (_) => OrderEmpty()),
                           );
                         } else {
                           ScaffoldMessenger.of(context).showSnackBar(
-                            const SnackBar(content: Text('Invalid credentials from API!')),
+                            const SnackBar(
+                              content: Text('Invalid credentials from API!'),
+                            ),
                           );
                         }
                       },
