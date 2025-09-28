@@ -1,14 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:untitled7/screen/order_detail.dart';
 import '../../application/cubit_model.dart';
 import '../../application/cubit_state.dart';
-import '../cubit/cubit_model.dart';
-import '../cubit/cubit_state.dart';
-import '../models/order_model.dart';
-import '../servisces/api_servicsec.dart';
-import 'custom_header.dart';
+import '../widget/custom_header.dart';
 import '../widget/custom_card.dart';
+import 'order_other.dart';
 
 class OrderNews extends StatefulWidget {
   const OrderNews({super.key});
@@ -60,16 +56,23 @@ class _OrderNewsState extends State<OrderNews> {
                     });
                   },
                   child: Container(
-                    padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 20),
+                    padding: const EdgeInsets.symmetric(
+                      vertical: 8,
+                      horizontal: 20,
+                    ),
                     decoration: BoxDecoration(
-                      color: selectedTab == "New" ? const Color(0xff004F62) : Colors.white,
+                      color: selectedTab == "New"
+                          ? const Color(0xff004F62)
+                          : Colors.white,
                       borderRadius: BorderRadius.circular(30),
                     ),
                     child: Center(
                       child: Text(
                         "New",
                         style: TextStyle(
-                          color: selectedTab == "New" ? Colors.white : Colors.black54,
+                          color: selectedTab == "New"
+                              ? Colors.white
+                              : Colors.black54,
                           fontSize: 14,
                           fontWeight: FontWeight.w500,
                         ),
@@ -84,21 +87,28 @@ class _OrderNewsState extends State<OrderNews> {
                       selectedTab = "Others";
                       Navigator.pushReplacement(
                         context,
-                        MaterialPageRoute(builder: (_) => OrderDetail()),
+                        MaterialPageRoute(builder: (_) => OrderOther()),
                       );
                     });
                   },
                   child: Container(
-                    padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 20),
+                    padding: const EdgeInsets.symmetric(
+                      vertical: 8,
+                      horizontal: 20,
+                    ),
                     decoration: BoxDecoration(
-                      color: selectedTab == "Others" ? const Color(0xff004F62) : Colors.white,
+                      color: selectedTab == "Others"
+                          ? const Color(0xff004F62)
+                          : Colors.white,
                       borderRadius: BorderRadius.circular(30),
                     ),
                     child: Center(
                       child: Text(
                         "Others",
                         style: TextStyle(
-                          color: selectedTab == "Others" ? Colors.white : Colors.black54,
+                          color: selectedTab == "Others"
+                              ? Colors.white
+                              : Colors.black54,
                           fontSize: 14,
                           fontWeight: FontWeight.bold,
                         ),
@@ -116,7 +126,9 @@ class _OrderNewsState extends State<OrderNews> {
                 if (state is OrderLoading) {
                   return const Center(child: CircularProgressIndicator());
                 } else if (state is OrderLoaded) {
-                  final newOrders = state.orders.where((order) => order.status == "0").toList();
+                  final newOrders = state.orders
+                      .where((order) => order.status == "0")
+                      .toList();
 
                   if (newOrders.isEmpty) {
                     return const Center(child: Text("No new orders"));

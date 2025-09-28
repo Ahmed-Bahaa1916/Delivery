@@ -1,7 +1,10 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'login_screen.dart'; // لاستدعاء شاشة تسجيل الدخول عند انتهاء الجلسة
+import '../widget/custom_header.dart';
+import 'login_screen.dart';
+import 'order_new.dart';
+import 'order_other.dart'; // لاستدعاء شاشة تسجيل الدخول عند انتهاء الجلسة
 
 class OrderEmpty extends StatefulWidget {
   const OrderEmpty({super.key});
@@ -122,7 +125,7 @@ class _OrdersScreenState extends State<OrderEmpty> with WidgetsBindingObserver {
                       });
                       Navigator.push(
                         context,
-                        MaterialPageRoute(builder: (_) => const OrderDetail()),
+                        MaterialPageRoute(builder: (_) => const OrderOther()),
                       );
                     },
                     child: Container(
