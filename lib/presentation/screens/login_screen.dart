@@ -30,7 +30,6 @@ class _LoginScreenState extends State<LoginScreen> with WidgetsBindingObserver {
   void _startSessionTimer() {
     _sessionTimer?.cancel();
     _sessionTimer = Timer(const Duration(minutes: 2), () {
-      // إذا انتهت الجلسة ارجع لشاشة Login
       Navigator.pushAndRemoveUntil(
         context,
         MaterialPageRoute(builder: (_) => const LoginScreen()),
@@ -53,10 +52,8 @@ class _LoginScreenState extends State<LoginScreen> with WidgetsBindingObserver {
   @override
   void didChangeAppLifecycleState(AppLifecycleState state) {
     if (state == AppLifecycleState.paused) {
-      // المستخدم خرج من التطبيق، شغل المؤقت مباشرة
       _startSessionTimer();
     } else if (state == AppLifecycleState.resumed) {
-      // المستخدم رجع للتطبيق، رجع المؤقت
       _resetSessionTimer();
     }
   }
@@ -64,7 +61,7 @@ class _LoginScreenState extends State<LoginScreen> with WidgetsBindingObserver {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: _resetSessionTimer, // كل مرة المستخدم يتفاعل، رجع المؤقت
+      onTap: _resetSessionTimer,
       behavior: HitTestBehavior.translucent,
       child: Scaffold(
         body: SafeArea(

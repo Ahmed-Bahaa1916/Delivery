@@ -1,5 +1,5 @@
 import 'package:dio/dio.dart';
-import '../../models/order_model.dart';
+import '../models/order_model.dart';
 
 class OrderService {
   final Dio _dio = Dio();

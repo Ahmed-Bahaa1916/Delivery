@@ -14,12 +14,12 @@ class OrderNews extends StatefulWidget {
 }
 
 class _OrderNewsState extends State<OrderNews> {
-  String selectedTab = "New"; // الافتراضي على New
+  String selectedTab = "New";
 
   @override
   void initState() {
     super.initState();
-    // جلب الطلبات عند بدء الشاشة
+
     context.read<OrderCubit>().fetchOrders();
   }
 

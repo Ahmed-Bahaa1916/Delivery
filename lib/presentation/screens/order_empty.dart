@@ -4,7 +4,7 @@ import 'package:google_fonts/google_fonts.dart';
 import '../widget/custom_header.dart';
 import 'login_screen.dart';
 import 'order_new.dart';
-import 'order_other.dart'; // لاستدعاء شاشة تسجيل الدخول عند انتهاء الجلسة
+import 'order_other.dart';
 
 class OrderEmpty extends StatefulWidget {
   const OrderEmpty({super.key});
@@ -14,7 +14,7 @@ class OrderEmpty extends StatefulWidget {
 }
 
 class _OrdersScreenState extends State<OrderEmpty> with WidgetsBindingObserver {
-  String selected = "New"; // الحالة الافتراضية
+  String selected = "New";
   Timer? _sessionTimer;
 
   @override
@@ -27,12 +27,11 @@ class _OrdersScreenState extends State<OrderEmpty> with WidgetsBindingObserver {
   void _startSessionTimer() {
     _sessionTimer?.cancel();
     _sessionTimer = Timer(const Duration(minutes: 2), () {
-      // إذا انتهت الجلسة ارجع لشاشة Login
       if (mounted) {
         Navigator.pushAndRemoveUntil(
           context,
           MaterialPageRoute(builder: (_) => const LoginScreen()),
-              (route) => false,
+          (route) => false,
         );
       }
     });
@@ -52,10 +51,8 @@ class _OrdersScreenState extends State<OrderEmpty> with WidgetsBindingObserver {
   @override
   void didChangeAppLifecycleState(AppLifecycleState state) {
     if (state == AppLifecycleState.paused) {
-      // المستخدم خرج من التطبيق، شغل المؤقت مباشرة
       _startSessionTimer();
     } else if (state == AppLifecycleState.resumed) {
-      // المستخدم رجع للتطبيق، رجع المؤقت
       _resetSessionTimer();
     }
   }
@@ -63,7 +60,7 @@ class _OrdersScreenState extends State<OrderEmpty> with WidgetsBindingObserver {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: _resetSessionTimer, // كل مرة المستخدم يتفاعل، رجع المؤقت
+      onTap: _resetSessionTimer,
       behavior: HitTestBehavior.translucent,
       child: Scaffold(
         body: Column(
@@ -100,16 +97,23 @@ class _OrdersScreenState extends State<OrderEmpty> with WidgetsBindingObserver {
                       );
                     },
                     child: Container(
-                      padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 16),
+                      padding: const EdgeInsets.symmetric(
+                        vertical: 8,
+                        horizontal: 16,
+                      ),
                       decoration: BoxDecoration(
-                        color: selected == "New" ? Color(0xff004F62) : Colors.white,
+                        color: selected == "New"
+                            ? Color(0xff004F62)
+                            : Colors.white,
                         borderRadius: BorderRadius.circular(30),
                       ),
                       child: Center(
                         child: Text(
                           "New",
                           style: TextStyle(
-                            color: selected == "New" ? Colors.white : Colors.black54,
+                            color: selected == "New"
+                                ? Colors.white
+                                : Colors.black54,
                             fontSize: 14,
                             fontWeight: FontWeight.bold,
                           ),
@@ -129,16 +133,23 @@ class _OrdersScreenState extends State<OrderEmpty> with WidgetsBindingObserver {
                       );
                     },
                     child: Container(
-                      padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 16),
+                      padding: const EdgeInsets.symmetric(
+                        vertical: 8,
+                        horizontal: 16,
+                      ),
                       decoration: BoxDecoration(
-                        color: selected == "Others" ? Color(0xff004F62): Colors.white,
+                        color: selected == "Others"
+                            ? Color(0xff004F62)
+                            : Colors.white,
                         borderRadius: BorderRadius.circular(30),
                       ),
                       child: Center(
                         child: Text(
                           "Others",
                           style: TextStyle(
-                            color: selected == "Others" ? Colors.white : Colors.black54,
+                            color: selected == "Others"
+                                ? Colors.white
+                                : Colors.black54,
                             fontSize: 14,
                             fontWeight: FontWeight.bold,
                           ),

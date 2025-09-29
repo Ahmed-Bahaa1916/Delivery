@@ -12,7 +12,7 @@ class CustomConatiner extends StatelessWidget {
   final String varible1;
   final String varible2;
   final Color color;
-  // هنا خليناه Color بدل String
+
 
   @override
   Widget build(BuildContext context) {
@@ -22,7 +22,7 @@ class CustomConatiner extends StatelessWidget {
         Text(
           varible1,
           style: TextStyle(
-            color: Color(0xff808080), // استخدمناه مباشرة
+            color: Color(0xff808080),
             fontSize: 15,
           ),
         ),

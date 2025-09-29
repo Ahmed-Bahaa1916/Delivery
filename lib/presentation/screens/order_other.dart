@@ -15,12 +15,11 @@ class OrderOther extends StatefulWidget {
 }
 
 class _OrderDetailState extends State<OrderOther> {
-  String selectedTab = "Others"; // افتراضي على Others
+  String selectedTab = "Others";
 
   @override
   void initState() {
     super.initState();
-    // جلب كل الطلبات عند تحميل الشاشة
     context.read<OrderCubit>().fetchOrders();
   }
 
@@ -35,7 +34,6 @@ class _OrderDetailState extends State<OrderOther> {
         MaterialPageRoute(builder: (_) => const OrderNews()),
       );
     } else {
-      // فلترة الطلبات ما عدا الجديد داخل Cubit
       context.read<OrderCubit>().filterOrders("Others");
     }
   }
@@ -48,7 +46,6 @@ class _OrderDetailState extends State<OrderOther> {
           const CustomHeader(),
           const SizedBox(height: 20),
 
-          // التبويبات
           Container(
             padding: const EdgeInsets.all(4),
             margin: const EdgeInsets.symmetric(horizontal: 60),
@@ -127,14 +124,12 @@ class _OrderDetailState extends State<OrderOther> {
 
           const SizedBox(height: 20),
 
-          // عرض البيانات من Cubit
           Expanded(
             child: BlocBuilder<OrderCubit, OrderState>(
               builder: (context, state) {
                 if (state is OrderLoading) {
                   return const Center(child: CircularProgressIndicator());
                 } else if (state is OrderLoaded) {
-                  // هنا نستعرض فقط الطلبات التي ليست جديدة
                   final orders = state.orders
                       .where((order) => order.status != "0")
                       .toList();

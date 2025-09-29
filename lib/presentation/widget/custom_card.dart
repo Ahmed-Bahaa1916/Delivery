@@ -80,7 +80,7 @@ class CustomCard extends StatelessWidget {
                       // Status
                       CustomConatiner(
                         varible1: 'Status',
-                        varible2: _getStatusName(status), // هنا
+                        varible2: _getStatusName(status),
                         color: _getStatusColor(status),
                       ),
                       // Total Price

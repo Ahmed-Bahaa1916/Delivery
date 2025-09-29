@@ -12,7 +12,6 @@ class CustomHeader extends StatelessWidget {
       height: 160,
       child: Stack(
         children: [
-          // خلفية حمراء
           Container(
             decoration: const BoxDecoration(
               color: Colors.red,
@@ -20,7 +19,6 @@ class CustomHeader extends StatelessWidget {
             ),
           ),
 
-          // الجزء الأزرق
           Align(
             alignment: Alignment.topRight,
             child: Container(
@@ -36,7 +34,6 @@ class CustomHeader extends StatelessWidget {
             ),
           ),
 
-          // الاسم
           Positioned(
             top: 60,
             left: 20,
@@ -63,7 +60,6 @@ class CustomHeader extends StatelessWidget {
             ),
           ),
 
-          // الأيقونة بخلفية دائرية
           Positioned(
             top: 60,
             right: 20,
@@ -86,14 +82,10 @@ class CustomHeader extends StatelessWidget {
             ),
           ),
 
-          // صورة الدليفري
           Positioned(
             bottom: 0,
             right: 75,
-            child: Image.asset(
-              "assets/images/deliveryman@3x.png", // حط الصورة بتاعتك هنا
-              height: 130,
-            ),
+            child: Image.asset("assets/images/deliveryman@3x.png", height: 130),
           ),
         ],
       ),
